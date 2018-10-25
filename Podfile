@@ -6,7 +6,7 @@ target 'StylishMenuScrollBar' do
   use_frameworks!
 
   # Pods for StylishMenuScrollBar
-
+  pod 'R.swift'
   pod 'R.swift.Library'
   
 end

@@ -17,23 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUM-KX-dfx">
-                                <rect key="frame" x="0.0" y="537" width="375" height="80"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VK8-hX-in7" customClass="MenuTabScrollView" customModule="StylishMenuScrollBar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="285" width="375" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="3KI-fL-dft"/>
+                                    <constraint firstAttribute="height" constant="128" id="oGk-F7-VGJ"/>
                                 </constraints>
-                            </scrollView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="fUM-KX-dfx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FzN-W7-uFs"/>
-                            <constraint firstItem="fUM-KX-dfx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bul-us-s5V"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fUM-KX-dfx" secondAttribute="bottom" constant="50" id="esR-J9-ggz"/>
+                            <constraint firstItem="VK8-hX-in7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="PJm-Kh-9ZU"/>
+                            <constraint firstItem="VK8-hX-in7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VaP-rA-w9Y"/>
+                            <constraint firstItem="VK8-hX-in7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="265" id="h7G-2P-bIv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="menyScrollView" destination="fUM-KX-dfx" id="daX-3h-vUK"/>
+                        <outlet property="menuTabScrollView" destination="VK8-hX-in7" id="vTr-tw-kDg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
