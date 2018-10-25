@@ -12,9 +12,13 @@
 		A2F194A92181724600FCCA11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F194A72181724600FCCA11 /* Main.storyboard */; };
 		A2F194AB2181724800FCCA11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2F194AA2181724800FCCA11 /* Assets.xcassets */; };
 		A2F194AE2181724800FCCA11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F194AC2181724800FCCA11 /* LaunchScreen.storyboard */; };
+		D44AE5671727F8C61A3770CF /* Pods_StylishMenuScrollBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA255E9BF5274167F6A9990 /* Pods_StylishMenuScrollBar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BC2DD5387C153024601CD94 /* Pods-StylishMenuScrollBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylishMenuScrollBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StylishMenuScrollBar/Pods-StylishMenuScrollBar.debug.xcconfig"; sourceTree = "<group>"; };
+		5366C48534303500D6C0DD3A /* Pods-StylishMenuScrollBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylishMenuScrollBar.release.xcconfig"; path = "Pods/Target Support Files/Pods-StylishMenuScrollBar/Pods-StylishMenuScrollBar.release.xcconfig"; sourceTree = "<group>"; };
+		6CA255E9BF5274167F6A9990 /* Pods_StylishMenuScrollBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylishMenuScrollBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F194A02181724600FCCA11 /* StylishMenuScrollBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StylishMenuScrollBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F194A32181724600FCCA11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2F194A52181724600FCCA11 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D44AE5671727F8C61A3770CF /* Pods_StylishMenuScrollBar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				A2F194A22181724600FCCA11 /* StylishMenuScrollBar */,
 				A2F194A12181724600FCCA11 /* Products */,
+				F003631F264F75ED37566808 /* Pods */,
+				F13CE4223857A73EF64C4956 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = StylishMenuScrollBar;
 			sourceTree = "<group>";
 		};
+		F003631F264F75ED37566808 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0BC2DD5387C153024601CD94 /* Pods-StylishMenuScrollBar.debug.xcconfig */,
+				5366C48534303500D6C0DD3A /* Pods-StylishMenuScrollBar.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F13CE4223857A73EF64C4956 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6CA255E9BF5274167F6A9990 /* Pods_StylishMenuScrollBar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2F194B22181724800FCCA11 /* Build configuration list for PBXNativeTarget "StylishMenuScrollBar" */;
 			buildPhases = (
+				EE42EDF1B8F5154A75713C05 /* [CP] Check Pods Manifest.lock */,
 				A2F1949C2181724600FCCA11 /* Sources */,
 				A2F1949D2181724600FCCA11 /* Frameworks */,
 				A2F1949E2181724600FCCA11 /* Resources */,
+				1A231158170A90175438EA28 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +155,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A231158170A90175438EA28 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-StylishMenuScrollBar/Pods-StylishMenuScrollBar-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StylishMenuScrollBar/Pods-StylishMenuScrollBar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE42EDF1B8F5154A75713C05 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StylishMenuScrollBar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A2F1949C2181724600FCCA11 /* Sources */ = {
@@ -280,6 +345,7 @@
 		};
 		A2F194B32181724800FCCA11 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0BC2DD5387C153024601CD94 /* Pods-StylishMenuScrollBar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,6 +364,7 @@
 		};
 		A2F194B42181724800FCCA11 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5366C48534303500D6C0DD3A /* Pods-StylishMenuScrollBar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
