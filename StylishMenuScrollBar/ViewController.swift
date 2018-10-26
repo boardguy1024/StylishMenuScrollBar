@@ -49,11 +49,11 @@ extension ViewController: MenuTabScrollViewDataSource {
         return view
     }
     
-    func tabScrollView(_ tabScrollView: MenuTabScrollView, contentViewForPageAtIndex index: Int) -> UIView {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        view.backgroundColor = .white
-        return view
-    }
+//    func tabScrollView(_ tabScrollView: MenuTabScrollView, contentViewForPageAtIndex index: Int) -> UIView {
+//        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+//        view.backgroundColor = .white
+//        return view
+//    }
     
     
 }

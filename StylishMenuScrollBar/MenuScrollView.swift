@@ -28,9 +28,9 @@ public protocol MenuTabScrollViewDataSource {
     //タブのindexを取得
     func tabScrollView(_ tabScrollView: MenuTabScrollView, tabViewForPageAtIndex index: Int) -> UIView
     
-    // get the content at index
-    // indexのコンテンツを取得
-    func tabScrollView(_ tabScrollView: MenuTabScrollView, contentViewForPageAtIndex index: Int) -> UIView
+//    // get the content at index
+//    // indexのコンテンツを取得
+//    func tabScrollView(_ tabScrollView: MenuTabScrollView, contentViewForPageAtIndex index: Int) -> UIView
 }
 
 open class MenuTabScrollView: UIView, UIScrollViewDelegate {
@@ -39,7 +39,8 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
     @IBInspectable open var tabSectionHeight: CGFloat = -1
     @IBInspectable open var tabSectionBackgroundColor: UIColor = UIColor.white
     @IBInspectable open var contentSectionBackgroundColor: UIColor = UIColor.white
-    @IBInspectable open var tabGradient: Bool = true
+    //カレントではないタブに薄いグラデーションをかけるかどうか
+    @IBInspectable open var needsTabGradient: Bool = true
     @IBInspectable open var arrowIndicator: Bool = false
     @IBInspectable open var pagingEnabled: Bool = true {
         didSet {
@@ -85,9 +86,10 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
         return dataSource?.tabScrollView(self, tabViewForPageAtIndex: index)
     }
     
-    fileprivate func contentViewForPageAtIndex(_ index: Int) -> UIView? {
-        return dataSource?.tabScrollView(self, contentViewForPageAtIndex: index)
-    }
+//    fileprivate func contentViewForPageAtIndex(_ index: Int) -> UIView? {
+//        return nil
+//       // return dataSource?.tabScrollView(self, contentViewForPageAtIndex: index)
+//    }
     
     // MARK: Init
     required public init?(coder aDecoder: NSCoder) {
@@ -133,8 +135,7 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
         // set custom attrs
         tabSectionScrollView.backgroundColor = self.tabSectionBackgroundColor
         contentSectionScrollView.backgroundColor = self.contentSectionBackgroundColor
-        //   arrowView.arrorBackgroundColor = self.tabSectionBackgroundColor
-        //   arrowView.isHidden = !arrowIndicator
+  
         
         // first time setup pages
         setupPages()
@@ -146,7 +147,7 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
             self.isStarted = true
             
             // load pages
-            self.lazyLoadPages()
+         //   self.lazyLoadPages()
         }
     }
     
@@ -406,6 +407,7 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
         }
     }
     
+    //タブを中央にあわせる処理
     fileprivate func lazyLoadPages() {
         if (numberOfPages != 0) {
             let offset = 1
@@ -460,7 +462,7 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
     }
     
     fileprivate func updateTabAppearance(animated: Bool = true) {
-        if (tabGradient) {
+        if (needsTabGradient) {
             if (numberOfPages != 0) {
                 for i in 0 ..< numberOfPages {
                     var alpha: CGFloat = 1.0
@@ -491,13 +493,15 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
     
     fileprivate func insertPageAtIndex(_ index: Int, frame: CGRect) {
         if (cachedPageContents[index] == nil) {
-            if let view = contentViewForPageAtIndex(index) {
-                view.frame = frame
-                cachedPageContents[index] = view
-                contentSectionScrollView.addSubview(view)
-            }
-        } else {
             cachedPageContents.awake(index)
+//            if let view = contentViewForPageAtIndex(index) {
+//                view.frame = frame
+//                cachedPageContents[index] = view
+//                contentSectionScrollView.addSubview(view)
+//            }
+//        } else {
+//
+//        }
         }
     }
     
