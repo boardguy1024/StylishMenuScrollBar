@@ -17,8 +17,8 @@ class ViewController: UIViewController {
         
         menuTabScrollView.delegate = self
         menuTabScrollView.dataSource = self
-        
     }
+    
 }
 
 extension ViewController: MenuTabScrollViewDelegate {
@@ -41,19 +41,14 @@ extension ViewController: MenuTabScrollViewDataSource {
     
     func tabScrollView(_ tabScrollView: MenuTabScrollView, tabViewForPageAtIndex index: Int) -> UIView {
         
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 70))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 120, height: 70))
         let imageView = UIImageView(image: #imageLiteral(resourceName: "6"))
         imageView.contentMode = .scaleAspectFit
         imageView.frame = view.bounds
         view.addSubview(imageView)
         return view
     }
-    
-//    func tabScrollView(_ tabScrollView: MenuTabScrollView, contentViewForPageAtIndex index: Int) -> UIView {
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-//        view.backgroundColor = .white
-//        return view
-//    }
+
     
     
 }

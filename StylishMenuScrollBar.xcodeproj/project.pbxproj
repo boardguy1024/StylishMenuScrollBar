@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A2015A8C218309A900552EF6 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2015A8B218309A900552EF6 /* ScrollViewController.swift */; };
+		A2015A8E218317B200552EF6 /* ButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2015A8D218317B200552EF6 /* ButtonView.xib */; };
+		A2015A90218317F300552EF6 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2015A8F218317F300552EF6 /* ButtonView.swift */; };
+		A264114E2185A35000A45415 /* LoopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A264114D2185A35000A45415 /* LoopViewController.swift */; };
+		A2C2DD872184693E00235862 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C2DD862184693E00235862 /* MyViewController.swift */; };
 		A2F194A42181724600FCCA11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F194A32181724600FCCA11 /* AppDelegate.swift */; };
 		A2F194A62181724600FCCA11 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F194A52181724600FCCA11 /* ViewController.swift */; };
 		A2F194A92181724600FCCA11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F194A72181724600FCCA11 /* Main.storyboard */; };
@@ -20,6 +25,11 @@
 		0BC2DD5387C153024601CD94 /* Pods-StylishMenuScrollBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylishMenuScrollBar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StylishMenuScrollBar/Pods-StylishMenuScrollBar.debug.xcconfig"; sourceTree = "<group>"; };
 		5366C48534303500D6C0DD3A /* Pods-StylishMenuScrollBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylishMenuScrollBar.release.xcconfig"; path = "Pods/Target Support Files/Pods-StylishMenuScrollBar/Pods-StylishMenuScrollBar.release.xcconfig"; sourceTree = "<group>"; };
 		6CA255E9BF5274167F6A9990 /* Pods_StylishMenuScrollBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylishMenuScrollBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2015A8B218309A900552EF6 /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
+		A2015A8D218317B200552EF6 /* ButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonView.xib; sourceTree = "<group>"; };
+		A2015A8F218317F300552EF6 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		A264114D2185A35000A45415 /* LoopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopViewController.swift; sourceTree = "<group>"; };
+		A2C2DD862184693E00235862 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		A2F194A02181724600FCCA11 /* StylishMenuScrollBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StylishMenuScrollBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F194A32181724600FCCA11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2F194A52181724600FCCA11 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,8 +75,13 @@
 			children = (
 				A2F194A32181724600FCCA11 /* AppDelegate.swift */,
 				A2F194A52181724600FCCA11 /* ViewController.swift */,
-				A2F194A72181724600FCCA11 /* Main.storyboard */,
+				A2015A8D218317B200552EF6 /* ButtonView.xib */,
+				A2C2DD862184693E00235862 /* MyViewController.swift */,
+				A2015A8F218317F300552EF6 /* ButtonView.swift */,
+				A2015A8B218309A900552EF6 /* ScrollViewController.swift */,
 				A2F194B72181BCF900FCCA11 /* MenuScrollView.swift */,
+				A2F194A72181724600FCCA11 /* Main.storyboard */,
+				A264114D2185A35000A45415 /* LoopViewController.swift */,
 				A2F194AA2181724800FCCA11 /* Assets.xcassets */,
 				A2F194AC2181724800FCCA11 /* LaunchScreen.storyboard */,
 				A2F194AF2181724800FCCA11 /* Info.plist */,
@@ -153,6 +168,7 @@
 			files = (
 				A2F194AE2181724800FCCA11 /* LaunchScreen.storyboard in Resources */,
 				A2F194AB2181724800FCCA11 /* Assets.xcassets in Resources */,
+				A2015A8E218317B200552EF6 /* ButtonView.xib in Resources */,
 				A2F194A92181724600FCCA11 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,7 +221,11 @@
 			files = (
 				A2F194B82181BCF900FCCA11 /* MenuScrollView.swift in Sources */,
 				A2F194A62181724600FCCA11 /* ViewController.swift in Sources */,
+				A2015A90218317F300552EF6 /* ButtonView.swift in Sources */,
+				A264114E2185A35000A45415 /* LoopViewController.swift in Sources */,
 				A2F194A42181724600FCCA11 /* AppDelegate.swift in Sources */,
+				A2C2DD872184693E00235862 /* MyViewController.swift in Sources */,
+				A2015A8C218309A900552EF6 /* ScrollViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

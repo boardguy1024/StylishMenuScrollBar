@@ -25,23 +25,26 @@ public protocol MenuTabScrollViewDataSource {
     func numberOfPagesInTabScrollView(_ tabScrollView: MenuTabScrollView) -> Int
     
     // get the tab at index
-    //タブのindexを取得
+    //indexのViewを返却
     func tabScrollView(_ tabScrollView: MenuTabScrollView, tabViewForPageAtIndex index: Int) -> UIView
     
-//    // get the content at index
-//    // indexのコンテンツを取得
-//    func tabScrollView(_ tabScrollView: MenuTabScrollView, contentViewForPageAtIndex index: Int) -> UIView
 }
+
 
 open class MenuTabScrollView: UIView, UIScrollViewDelegate {
     // MARK: Public Variables
     @IBInspectable open var defaultPage: Int = 0
     @IBInspectable open var tabSectionHeight: CGFloat = -1
+    
+    //backGroundColor
     @IBInspectable open var tabSectionBackgroundColor: UIColor = UIColor.white
+    
+    // paging
     @IBInspectable open var contentSectionBackgroundColor: UIColor = UIColor.white
+    
     //カレントではないタブに薄いグラデーションをかけるかどうか
-    @IBInspectable open var needsTabGradient: Bool = true
-    @IBInspectable open var arrowIndicator: Bool = false
+//    @IBInspectable open var needsTabGradient: Bool = true
+    
     @IBInspectable open var pagingEnabled: Bool = true {
         didSet {
             contentSectionScrollView.isPagingEnabled = pagingEnabled
@@ -86,10 +89,6 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
         return dataSource?.tabScrollView(self, tabViewForPageAtIndex: index)
     }
     
-//    fileprivate func contentViewForPageAtIndex(_ index: Int) -> UIView? {
-//        return nil
-//       // return dataSource?.tabScrollView(self, contentViewForPageAtIndex: index)
-//    }
     
     // MARK: Init
     required public init?(coder aDecoder: NSCoder) {
@@ -126,77 +125,15 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
     override open func layoutSubviews() {
         super.layoutSubviews()
         
-        // reset status and stop scrolling immediately
-        if (isStarted) {
-            isStarted = false
-            stopScrolling()
-        }
-        
         // set custom attrs
         tabSectionScrollView.backgroundColor = self.tabSectionBackgroundColor
         contentSectionScrollView.backgroundColor = self.contentSectionBackgroundColor
   
-        
         // first time setup pages
         setupPages()
         
-        // async necessarily
-        DispatchQueue.main.async {
-            // first time set defaule pageIndex
-            self.initWithPageIndex(self.pageIndex ?? self.defaultPage)
-            self.isStarted = true
-            
-            // load pages
-         //   self.lazyLoadPages()
-        }
     }
     
-    
-    override open func prepareForInterfaceBuilder() {
-        let textColor = UIColor(red: 203.0 / 255, green: 203.0 / 255, blue: 203.0 / 255, alpha: 1.0)
-        let tabSectionHeight = self.tabSectionHeight >= 0 ? self.tabSectionHeight : 64
-        
-        // labels
-        let tabSectionLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: tabSectionHeight))
-        let contentSectionLabel = UILabel(frame: CGRect(x: 0, y: tabSectionHeight + 1, width: self.frame.width, height: self.frame.height - tabSectionHeight - 1))
-        
-        tabSectionLabel.text = "Tab Section"
-        tabSectionLabel.textColor = textColor
-        tabSectionLabel.textAlignment = .center
-        if #available(iOS 8.2, *) {
-            tabSectionLabel.font = UIFont.systemFont(ofSize: 27, weight: UIFont.Weight.heavy)
-        } else {
-            tabSectionLabel.font = UIFont.systemFont(ofSize: 27)
-        }
-        tabSectionLabel.backgroundColor = tabSectionBackgroundColor
-        contentSectionLabel.text = "Content Section"
-        contentSectionLabel.textColor = textColor
-        contentSectionLabel.textAlignment = .center
-        if #available(iOS 8.2, *) {
-            contentSectionLabel.font = UIFont.systemFont(ofSize: 27, weight: UIFont.Weight.heavy)
-        } else {
-            contentSectionLabel.font = UIFont.systemFont(ofSize: 27)
-        }
-        contentSectionLabel.backgroundColor = contentSectionBackgroundColor
-        
-        // rect and seperator
-        let rectView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
-        rectView.layer.borderWidth = 1
-        rectView.layer.borderColor = textColor.cgColor
-        
-        let seperatorView = UIView(frame: CGRect(x: 0, y: tabSectionHeight, width: self.frame.width, height: 1))
-        seperatorView.backgroundColor = textColor
-        
-        // arrow
-        //   arrowView.frame.origin = CGPoint(x: (self.frame.width - arrowView.frame.width) / 2, y: tabSectionHeight)
-        
-        // add subviews
-        self.addSubview(tabSectionLabel)
-        self.addSubview(contentSectionLabel)
-        self.addSubview(rectView)
-        self.addSubview(seperatorView)
-        //  self.addSubview(arrowView)
-    }
     
     // MARK: - Tab Clicking Control
     @objc func tabViewDidClick(_ sensor: UITapGestureRecognizer) {
@@ -242,6 +179,8 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
     
     // scrolling
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        
         let currentIndex = currentPageIndex()
         
         if (scrollView == activedScrollView) {
@@ -262,10 +201,9 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
             if (scrollView == contentSectionScrollView) {
                 tabSectionScrollView.contentOffset.x = ((contentSectionScrollView.contentOffset.x + halfWidth - contentsWidth) / speed) + tabsWidth - halfWidth
             }
-            updateTabAppearance()
         }
         
-        if (isStarted && pageIndex != currentIndex) {
+        if (pageIndex != currentIndex) {
             // set index
             pageIndex = currentIndex
             
@@ -277,18 +215,13 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
         }
     }
     
-    // MARK: Public Methods
-    //    func scroll(offsetX: CGFloat) {
-    //    }
-    
-    open func reloadData() {
-        // setup pages
-        setupPages()
-        
-        // load pages
-        lazyLoadPages()
-    }
-    
+//    open func reloadData() {
+//        // setup pages
+//        setupPages()
+//
+//        // load pages
+//        lazyLoadPages()
+//    }
     
     open func changePageToIndex(_ index: Int, animated: Bool) {
         activedScrollView = tabSectionScrollView
@@ -307,7 +240,6 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
         contentSectionScrollView.setContentOffset(contentSectionScrollView.contentOffset, animated: false)
     }
     
- 
     fileprivate func initWithPageIndex(_ index: Int) {
         // set pageIndex
         pageIndex = index
@@ -324,7 +256,7 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
             // set default position of tabs and contents
             tabSectionScrollView.contentOffset = CGPoint(x: tabOffsetX - (self.frame.width - widthForTabAtIndex(index)) / 2, y: tabSectionScrollView.contentOffset.y)
             contentSectionScrollView.contentOffset = CGPoint(x: contentOffsetX, y: contentSectionScrollView.contentOffset.y)
-            updateTabAppearance(animated: false)
+          //  updateTabAppearance(animated: false)
         }
     }
     
@@ -402,30 +334,17 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
             // reset the fixed size of content section
             contentSectionScrollView.frame = CGRect(x: 0, y: tabSectionHeight, width: self.frame.size.width, height: contentSectionHeight)
             
-            // reset the origin of arrow view
-            //  arrowView.frame.origin = CGPoint(x: (self.frame.width - arrowView.frame.width) / 2, y: tabSectionHeight)
+         
         }
     }
     
     //タブを中央にあわせる処理
     fileprivate func lazyLoadPages() {
         if (numberOfPages != 0) {
-            let offset = 1
-            let leftBoundIndex = pageIndex - offset > 0 ? pageIndex - offset : 0
-            let rightBoundIndex = pageIndex + offset < numberOfPages ? pageIndex + offset : numberOfPages - 1
-            
+         
             var currentContentWidth: CGFloat = 0.0
-            for i in 0 ..< numberOfPages {
+            for _ in 0 ..< numberOfPages {
                 let width = self.frame.width
-                if (i >= leftBoundIndex && i <= rightBoundIndex) {
-                    let frame = CGRect(
-                        x: currentContentWidth,
-                        y: 0,
-                        width: width,
-                        height: contentSectionScrollView.frame.size.height)
-                    insertPageAtIndex(i, frame: frame)
-                }
-                
                 currentContentWidth += width
             }
             contentSectionScrollView.contentSize = CGSize(width: currentContentWidth, height: contentSectionScrollView.frame.height)
@@ -460,51 +379,6 @@ open class MenuTabScrollView: UIView, UIScrollViewDelegate {
             }
         }
     }
-    
-    fileprivate func updateTabAppearance(animated: Bool = true) {
-        if (needsTabGradient) {
-            if (numberOfPages != 0) {
-                for i in 0 ..< numberOfPages {
-                    var alpha: CGFloat = 1.0
-                    
-                    let offset = abs(i - pageIndex)
-                    if (offset > 1) {
-                        alpha = 0.2
-                    } else if (offset > 0) {
-                        alpha = 0.4
-                    } else {
-                        alpha = 1.0
-                    }
-                    
-                    if let tab = self.cachedPageTabs[i] {
-                        if (animated) {
-                            UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.allowUserInteraction, animations: {
-                                tab.alpha = alpha
-                                return
-                            }, completion: nil)
-                        } else {
-                            tab.alpha = alpha
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    fileprivate func insertPageAtIndex(_ index: Int, frame: CGRect) {
-        if (cachedPageContents[index] == nil) {
-            cachedPageContents.awake(index)
-//            if let view = contentViewForPageAtIndex(index) {
-//                view.frame = frame
-//                cachedPageContents[index] = view
-//                contentSectionScrollView.addSubview(view)
-//            }
-//        } else {
-//
-//        }
-        }
-    }
-    
 }
 
 public struct CacheQueue<Key: Hashable, Value> {

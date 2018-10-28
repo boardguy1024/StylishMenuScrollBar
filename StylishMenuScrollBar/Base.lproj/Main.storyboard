@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8Be-c0-vgY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,6 +9,91 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Scroll View Controller-->
+        <scene sceneID="bjG-Es-a88">
+            <objects>
+                <viewController id="MIW-53-ME8" customClass="ScrollViewController" customModule="StylishMenuScrollBar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4nR-ku-VuF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bc3-ZC-Of8">
+                                <rect key="frame" x="0.0" y="467" width="375" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="d2f-A8-lDf"/>
+                                </constraints>
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24y-hp-aOg">
+                                <rect key="frame" x="0.0" y="320" width="375" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="mf6-75-jl4"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="24y-hp-aOg" firstAttribute="top" secondItem="f45-bD-7tX" secondAttribute="top" constant="300" id="1bc-Qb-LNa"/>
+                            <constraint firstItem="bc3-ZC-Of8" firstAttribute="leading" secondItem="f45-bD-7tX" secondAttribute="leading" id="blI-9I-yMJ"/>
+                            <constraint firstItem="bc3-ZC-Of8" firstAttribute="trailing" secondItem="f45-bD-7tX" secondAttribute="trailing" id="ilt-Yo-xA4"/>
+                            <constraint firstItem="bc3-ZC-Of8" firstAttribute="bottom" secondItem="f45-bD-7tX" secondAttribute="bottom" id="mRL-uP-Quc"/>
+                            <constraint firstItem="24y-hp-aOg" firstAttribute="leading" secondItem="f45-bD-7tX" secondAttribute="leading" id="mgv-4Q-TaW"/>
+                            <constraint firstItem="24y-hp-aOg" firstAttribute="trailing" secondItem="f45-bD-7tX" secondAttribute="trailing" id="v88-5b-EXS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="f45-bD-7tX"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonsScrollView" destination="24y-hp-aOg" id="mPd-5e-5pZ"/>
+                        <outlet property="pageScrollView" destination="bc3-ZC-Of8" id="8IA-gV-YRa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="87q-Hu-CfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="-604.04797601199402"/>
+        </scene>
+        <!--My View Controller-->
+        <scene sceneID="hmt-Gk-KyN">
+            <objects>
+                <viewController id="FMJ-dr-4Ht" customClass="MyViewController" customModule="StylishMenuScrollBar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ody-Ya-sxu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Lx9-UY-m8S"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DO6-eU-jhS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="914" y="-604"/>
+        </scene>
+        <!--Loop View Controller-->
+        <scene sceneID="EsQ-aE-5Sl">
+            <objects>
+                <viewController id="8Be-c0-vgY" customClass="LoopViewController" customModule="StylishMenuScrollBar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Wc-lN-E1M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bUc-AI-jm1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bUc-AI-jm1" firstAttribute="leading" secondItem="9pK-Fg-Jfq" secondAttribute="leading" id="7Jg-ya-L3j"/>
+                            <constraint firstItem="bUc-AI-jm1" firstAttribute="bottom" secondItem="9pK-Fg-Jfq" secondAttribute="bottom" id="7un-T9-BCz"/>
+                            <constraint firstItem="bUc-AI-jm1" firstAttribute="top" secondItem="5Wc-lN-E1M" secondAttribute="top" id="XcD-Sq-r4m"/>
+                            <constraint firstItem="bUc-AI-jm1" firstAttribute="trailing" secondItem="9pK-Fg-Jfq" secondAttribute="trailing" id="mFq-iq-a71"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9pK-Fg-Jfq"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="bUc-AI-jm1" id="6V5-Zu-fnO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qdC-3Z-hZe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1701.5999999999999" y="-604.04797601199402"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -18,10 +103,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VK8-hX-in7" customClass="MenuTabScrollView" customModule="StylishMenuScrollBar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="285" width="375" height="128"/>
+                                <rect key="frame" x="0.0" y="285" width="375" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="oGk-F7-VGJ"/>
+                                    <constraint firstAttribute="height" constant="150" id="oGk-F7-VGJ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="needsTabGradient" value="NO"/>
