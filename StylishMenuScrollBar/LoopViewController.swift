@@ -12,20 +12,18 @@ class LoopViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     
-    let widthOfScroll: CGFloat = 375
+    var widthOfScroll: CGFloat = 0
     let heightOfScroll: CGFloat = 240
-    let widthOfImage: CGFloat = 375
+    var widthOfImage: CGFloat = 0
     let heightOfImage: CGFloat = 240
     let slideImageStrings: [UIColor]  = [.red, .yellow, .blue]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var scrollFrame = CGRect.zero
-        scrollFrame.size.width = widthOfScroll
-        scrollFrame.size.height = heightOfScroll
+        widthOfScroll = view.frame.width
+        widthOfImage = view.frame.width
         
-        scrollView.center = self.view.center
         scrollView.bounces = true
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
@@ -33,10 +31,10 @@ class LoopViewController: UIViewController {
         
     
         //最後イメージ
-        let imageView = UIImageView()
-        imageView.backgroundColor = slideImageStrings.last!
-        imageView.frame = CGRect(x: 0, y: 0, width: widthOfImage, height: heightOfImage)
-        scrollView.addSubview(imageView)
+        let lastImageView = UIImageView()
+        lastImageView.backgroundColor = slideImageStrings.last!
+        lastImageView.frame = CGRect(x: 0, y: 0, width: widthOfImage, height: heightOfImage)
+        scrollView.addSubview(lastImageView)
         
         //ループ
         slideImageStrings.enumerated().forEach { index, name in
@@ -67,8 +65,11 @@ extension LoopViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let currentPage: Int = Int(scrollView.contentOffset.x / widthOfScroll)
         
+        print("currentPage: \(currentPage)")
         if currentPage == 0 {
             scrollView.scrollRectToVisible(CGRect(x: widthOfScroll * CGFloat(slideImageStrings.count), y: 0, width: widthOfScroll, height: heightOfScroll), animated: false)
+            
+            scrollView.contentOffset.x = widthOfScroll * CGFloat(slideImageStrings.count)
         }
         else if currentPage == slideImageStrings.count + 1 {
             scrollView.scrollRectToVisible(CGRect(x: widthOfScroll, y: 0, width: widthOfImage, height: heightOfImage), animated: false)
