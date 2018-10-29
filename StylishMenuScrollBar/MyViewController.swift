@@ -12,6 +12,8 @@ import RxCocoa
 
 class MyViewController: UIViewController, UIScrollViewDelegate {
     
+    private let bag: DisposeBag = DisposeBag()
+    
     // UIScrillView.
     var scrollViewHeader: UIScrollView!
     var scrollViewMain: UIScrollView!
@@ -20,7 +22,7 @@ class MyViewController: UIViewController, UIScrollViewDelegate {
     let frontAndLastAddPageSize = 3
     
     var currentPage: Int = 0
-    
+    var currentDirection: ScrollDirection = .none
     //ループさせるためのへ要素
     private var startPoint: CGPoint!
     //表示するページビューのArray
@@ -32,8 +34,7 @@ class MyViewController: UIViewController, UIScrollViewDelegate {
         // 画面サイズの取得.
         let width = self.view.frame.maxX, height = self.view.frame.maxY
         
-        
-       
+    
         // ScrollViewMainの設定.
         scrollViewMain = UIScrollView(frame: self.view.frame)
         scrollViewMain.showsHorizontalScrollIndicator = false
@@ -58,8 +59,6 @@ class MyViewController: UIViewController, UIScrollViewDelegate {
         scrollViewHeader.backgroundColor = .gray
         self.view.addSubview(scrollViewHeader)
         
-        
-        
         //Loopさせるために前後に黒いラベルを３個ずつをつける-----------------------------------------------
         //前
         //一番前から1,2,3ラベルをAdd
@@ -73,7 +72,6 @@ class MyViewController: UIViewController, UIScrollViewDelegate {
             myLabel.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
             myLabel.layer.cornerRadius = 40.0
             scrollViewMain.addSubview(myLabel)
-            
         }
         
         //後
@@ -88,7 +86,6 @@ class MyViewController: UIViewController, UIScrollViewDelegate {
             myLabel.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
             myLabel.layer.cornerRadius = 40.0
             scrollViewMain.addSubview(myLabel)
-            
         }
         //----------------------------------------------------------------------------------------------
         
@@ -141,6 +138,7 @@ class MyViewController: UIViewController, UIScrollViewDelegate {
             scrollViewMain.addSubview(myLabel)
         }
         
+        
         //赤いラベル
         // ScrollView2に貼付ける Labelの生成.
         for i in 0 ..< pageSize {
@@ -164,6 +162,16 @@ class MyViewController: UIViewController, UIScrollViewDelegate {
         //初期位置を２ページ目にする
         scrollViewMain.setContentOffset(CGPoint(x: width * CGFloat(frontAndLastAddPageSize), y: 0), animated: true)
         
+        bind()
+    }
+    
+    private func bind() {
+        scrollViewMain.rx.direction.asObservable()
+            .subscribe(onNext: { direction in
+                self.currentDirection = direction
+            })
+            .disposed(by: bag)
+
     }
     
     
@@ -192,20 +200,77 @@ class MyViewController: UIViewController, UIScrollViewDelegate {
         let currentPage = Int(scrollView.contentOffset.x / view.frame.width)
         self.currentPage = currentPage
         
-        print("currentPage: \(self.currentPage)")
-        
         let width = self.view.frame.width
         
-        if currentPage == 0 {
+        if self.currentPage == 0 {
             scrollViewMain.contentOffset.x = width * CGFloat(pageSize)
         }
         else if currentPage == pageSize {
             scrollViewMain.contentOffset.x = 0
-            
         }
-
     }
 }
+
+enum ScrollDirection {
+    case none
+    case left
+    case right
+}
+
+extension Reactive where Base: UIScrollView {
+    
+    private var contentOffsetDiff: Observable<(CGPoint, CGPoint)> {
+        return Observable.zip(contentOffset, contentOffset.skip(1)) { ($0, $1) }
+    }
+    
+    //これだと流れっぱなしになる
+    var direction: Observable<ScrollDirection> {
+        return contentOffsetDiff.flatMap { (old, new) -> Observable<ScrollDirection> in
+            
+            Observable<ScrollDirection>.create { observe in
+                let direction = old.x < new.x ?  ScrollDirection.left : old.x > new.x ? .right : .none
+                observe.onNext(direction)
+                observe.onCompleted()
+                return Disposables.create()
+            }
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
