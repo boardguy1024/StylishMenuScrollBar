@@ -8,5 +8,8 @@ target 'StylishMenuScrollBar' do
   # Pods for StylishMenuScrollBar
   pod 'R.swift'
   pod 'R.swift.Library'
+  pod 'RxSwift',    '~> 4.0'
+  pod 'RxCocoa',    '~> 4.0'
+  
   
 end

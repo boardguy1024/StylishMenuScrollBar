@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MyViewController: UIViewController, UIScrollViewDelegate {
     
@@ -203,9 +205,8 @@ class MyViewController: UIViewController, UIScrollViewDelegate {
         }
 
     }
-    
-    
-    
 }
+
+
 
 

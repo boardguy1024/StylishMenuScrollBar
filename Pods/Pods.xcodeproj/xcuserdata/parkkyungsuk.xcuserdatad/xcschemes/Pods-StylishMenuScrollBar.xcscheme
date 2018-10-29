@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8C7B8F92DA08850D190E28384386BA85"
+               BlueprintIdentifier = "F6F5CC2824E53DD15CC0933F6A6A9FE6"
                BuildableName = "Pods_StylishMenuScrollBar.framework"
                BlueprintName = "Pods-StylishMenuScrollBar"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8C7B8F92DA08850D190E28384386BA85"
+            BlueprintIdentifier = "F6F5CC2824E53DD15CC0933F6A6A9FE6"
             BuildableName = "Pods_StylishMenuScrollBar.framework"
             BlueprintName = "Pods-StylishMenuScrollBar"
             ReferencedContainer = "container:Pods.xcodeproj">
